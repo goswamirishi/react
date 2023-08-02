@@ -1,37 +1,25 @@
 import React, { useState } from 'react'
 
-export default function About() {
+export default function About(props) {
     // let myCustomStyle = {
     //     color: '#fff',
     //     backgroundColor: 'black'
     // }
-    const [myCustomStyle, setMyStyle] = useState({
-        color: '#fff',
-        backgroundColor: 'black'
-    })
+    // const [myCustomStyle, setMyStyle] = useState({
+    //     color: '#fff',
+    //     backgroundColor: 'black'
+    // })
 
-    const [btnTxt, setBtnTxt] = useState('white')
-    const toggleStyle = () => {
-        if (myCustomStyle.backgroundColor === 'white') {
-            setMyStyle({
-                color: '#fff',
-                backgroundColor: 'black'
-            })
-            setBtnTxt('White')
-        }
-        else {
-            setMyStyle({
-                color: 'black',
-                backgroundColor: 'white'
-            })
-            setBtnTxt('Dark')
 
-        }
+    let myCustomStyle = {
+        color: props.mode === 'dark' ? 'white' : '#042743',
+        backgroundColor: props.mode === 'dark' ? 'rgb(36 74 104)' : 'white',
     }
+
     return (
-        <div className='container' style={myCustomStyle}>
-            <h2>About us</h2>
-            <div className="accordion" id="accordionExample" style={myCustomStyle}>
+        <div className='container'>
+            <h2 className='my-3' style={{ color: props.mode === 'dark' ? 'white' : '#042743' }}>About us</h2>
+            <div className="accordion" id="accordionExample" style={{ myCustomStyle }}>
                 <div className="accordion-item">
                     <h2 className="accordion-header">
                         <button className="accordion-button" style={myCustomStyle} type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -69,10 +57,7 @@ export default function About() {
                     </div>
                 </div>
             </div>
-            <div className="container my-2">
 
-                <button type='button' onClick={toggleStyle} className='btn btn-primary'>Enable {btnTxt} mode</button>
-            </div>
         </div>
     )
 }
